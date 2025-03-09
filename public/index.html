@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV2Invoice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CSV2Invoice</h1>
+            <p class="tagline">Mass invoice production tool</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <div class="card-body">
+                    <div id="step1">
+                        <h2>Business Details</h2>
+                        <div class="mb-3">
+                            <label for="businessName" class="form-label">Business Name</label>
+                            <input type="text" id="businessName" class="form-control" placeholder="Company Name" value="Boesjans Ft Sjoemelaar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="businessDetails" class="form-label">Additional Details</label>
+                            <textarea id="businessDetails" class="form-control" rows="6" placeholder="Enter your business details here (address, tax ID, contact info, etc.)"></textarea>
+                        </div>
+                        <button id="step1Next" class="btn btn-primary">Next</button>
+                    </div>
+
+                    <div id="step2" style="display: none;">
+                        <h2>Upload CSV File</h2>
+                        <div class="mb-3">
+                            <input class="form-control" type="file" id="csvFileInput" accept=".csv">
+                        </div>
+                        <div id="fileInfo" class="file-info"></div>
+                        <div class="d-flex justify-content-between">
+                            <button id="step2Prev" class="btn btn-secondary">Back</button>
+                            <button id="step2Next" class="btn btn-primary" disabled>Next</button>
+                        </div>
+                    </div>
+
+                    <div id="step3" style="display: none;">
+                        <h2>Invoice Options</h2>
+                        <div class="mb-4">
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="radio" name="invoiceType" id="singleInvoice" value="single" checked>
+                                <label class="form-check-label" for="singleInvoice">
+                                    <strong>Consolidated Invoice</strong>
+                                    <p class="option-desc">Generate one invoice with all records as line items</p>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="invoiceType" id="multipleInvoices" value="multiple">
+                                <label class="form-check-label" for="multipleInvoices">
+                                    <strong>Individual Invoices</strong>
+                                    <p class="option-desc">Generate separate invoice for each record</p>
+                                </label>
+                            </div>
+                        </div>
+
+                        <h3>Select Template</h3>
+                        <div class="template-selector">
+                            <div class="template-item">
+                                <div class="template-preview">
+                                    <div class="template-img" id="template1-preview">
+                                        <div class="template-header"></div>
+                                        <div class="template-body">
+                                            <div class="template-line"></div>
+                                            <div class="template-line"></div>
+                                            <div class="template-line"></div>
+                                        </div>
+                                        <div class="template-footer"></div>
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="templateChoice" id="template1" value="minimal" checked>
+                                    <label class="form-check-label" for="template1">Minimal</label>
+                                </div>
+                            </div>
+                            <div class="template-item">
+                                <div class="template-preview">
+                                    <div class="template-img" id="template2-preview">
+                                        <div class="template-header-alt"></div>
+                                        <div class="template-body">
+                                            <div class="template-table"></div>
+                                        </div>
+                                        <div class="template-footer-alt"></div>
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="templateChoice" id="template2" value="professional">
+                                    <label class="form-check-label" for="template2">Professional</label>
+                                </div>
+                            </div>
+                            <div class="template-item">
+                                <div class="template-preview">
+                                    <div class="template-img" id="template3-preview">
+                                        <div class="template-header-dark"></div>
+                                        <div class="template-body-dark">
+                                            <div class="template-line-dark"></div>
+                                            <div class="template-line-dark"></div>
+                                            <div class="template-table-dark"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="templateChoice" id="template3" value="dark">
+                                    <label class="form-check-label" for="template3">Dark</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 d-flex justify-content-between">
+                            <button id="step3Prev" class="btn btn-secondary">Back</button>
+                            <button id="step3Next" class="btn btn-primary">Next</button>
+                        </div>
+                    </div>
+
+                    <div id="step4" style="display: none;">
+                        <h2>Map CSV Fields</h2>
+                        <div class="alert alert-secondary">
+                            Select which columns from your CSV correspond to invoice data fields
+                        </div>
+                        <div id="mappingContainer" class="row"></div>
+                        <div class="mt-4 d-flex justify-content-between">
+                            <button id="step4Prev" class="btn btn-secondary">Back</button>
+                            <button id="generateBtn" class="btn btn-primary">Generate Invoices</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="invoicePreviewContainer" style="display: none;">
+                <div class="card mt-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h3>Invoice Preview</h3>
+                        <div>
+                            <button class="btn btn-outline-light btn-sm" id="downloadInvoiceBtn">Download PDF</button>
+                            <button class="btn btn-outline-light btn-sm ms-2" id="downloadUpdatedCsvBtn">Download CSV</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="invoicePreview"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="status" class="status"></div>
+
+        <footer>
+            <p>Use this tool at your own risk.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

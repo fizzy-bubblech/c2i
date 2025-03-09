@@ -1,0 +1,319 @@
+:root {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+  --muted-color: #999;
+  --primary-color: #0d6efd;
+  --secondary-color: #495057;
+  --border-color: #333;
+  --input-bg: #2d2d2d;
+  --input-text: #ccc;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+}
+
+/* Base styles */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Courier New", monospace;
+  line-height: 1.6;
+  padding: 20px 0;
+}
+
+.container {
+  max-width: 900px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+/* Header */
+header {
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+}
+
+header h1 {
+  margin-bottom: 0;
+  font-size: 1.8rem;
+}
+
+.tagline {
+  color: var(--muted-color);
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+/* Card styles */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 20px;
+}
+
+.card-body {
+  padding: 25px;
+}
+
+/* Form controls */
+.form-control,
+.form-select {
+  background-color: var(--input-bg);
+  border-color: var(--border-color);
+  color: var(--input-text);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--input-bg);
+  border-color: var(--primary-color);
+  color: var(--input-text);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+.form-check-input {
+  background-color: var(--input-bg);
+  border-color: var(--border-color);
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.btn-outline-light {
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.btn-outline-light:hover {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+/* File info */
+.file-info {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* Option descriptions */
+.option-desc {
+  margin-top: 5px;
+  margin-bottom: 0;
+  color: var(--muted-color);
+  font-size: 0.9rem;
+}
+
+/* Template selector */
+.template-selector {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.template-item {
+  flex: 1;
+  min-width: 120px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.template-preview {
+  margin-bottom: 10px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.template-img {
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Template 1 - Minimal */
+.template-header {
+  height: 20px;
+  background-color: #2196f3;
+}
+
+.template-body {
+  padding: 10px;
+}
+
+.template-line {
+  height: 8px;
+  background-color: #e9e9e9;
+  margin-bottom: 8px;
+  border-radius: 2px;
+}
+
+.template-footer {
+  height: 15px;
+  background-color: #f5f5f5;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Template 2 - Professional */
+.template-header-alt {
+  height: 25px;
+  background-color: #333;
+}
+
+.template-table {
+  height: 50px;
+  background-color: #e9e9e9;
+  margin-top: 10px;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 20%,
+    #ccc 20%,
+    #ccc 21%,
+    transparent 21%,
+    transparent 40%,
+    #ccc 40%,
+    #ccc 41%,
+    transparent 41%,
+    transparent 60%,
+    #ccc 60%,
+    #ccc 61%,
+    transparent 61%,
+    transparent 80%,
+    #ccc 80%,
+    #ccc 81%,
+    transparent 81%
+  );
+  background-size: 100% 25px;
+  background-repeat: no-repeat;
+}
+
+.template-footer-alt {
+  height: 15px;
+  background-color: #333;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Template 3 - Dark */
+.template-header-dark {
+  height: 25px;
+  background-color: #212121;
+}
+
+.template-body-dark {
+  background-color: #333;
+  height: 75px;
+  padding: 10px;
+}
+
+.template-line-dark {
+  height: 8px;
+  background-color: #444;
+  margin-bottom: 8px;
+  border-radius: 2px;
+}
+
+.template-table-dark {
+  height: 30px;
+  background-color: #444;
+  margin-top: 10px;
+}
+
+/* Status messages */
+.status {
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: 4px;
+  display: none;
+}
+
+.status.success {
+  background-color: rgba(40, 167, 69, 0.2);
+  border: 1px solid var(--success-color);
+  color: #8fd19e;
+  display: block;
+}
+
+.status.error {
+  background-color: rgba(220, 53, 69, 0.2);
+  border: 1px solid var(--error-color);
+  color: #ea868f;
+  display: block;
+}
+
+/* Mapping section */
+.field-mapping {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.field-mapping label {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+/* Footer */
+footer {
+  margin-top: 40px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  color: var(--muted-color);
+  font-size: 0.8rem;
+}
+
+/* Invoice preview */
+#invoicePreview {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  border-radius: 4px;
+  min-height: 400px;
+}
